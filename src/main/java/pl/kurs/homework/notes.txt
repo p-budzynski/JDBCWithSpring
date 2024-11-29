@@ -1,0 +1,2 @@
+Praca domowa1:
+Zrobic prace domowa z pracownikami, na persistence polaczone ze springiem (JDBC)
