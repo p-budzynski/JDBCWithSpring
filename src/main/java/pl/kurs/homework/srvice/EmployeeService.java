@@ -1,15 +1,15 @@
 package pl.kurs.homework.srvice;
 
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Component;
 import pl.kurs.homework.dao.EmployeeDao;
 import pl.kurs.homework.entity.Employee;
 import pl.kurs.homework.entity.Position;
 
+@Component
+@AllArgsConstructor
 public class EmployeeService {
     private final EmployeeDao employeeDao;
-
-    public EmployeeService(EmployeeDao employeeDao) {
-        this.employeeDao = employeeDao;
-    }
 
     public void hireEmployee(Employee employee) {
         employeeDao.save(employee);
@@ -29,7 +29,7 @@ public class EmployeeService {
 
     public void promoteEmployee(Long employeeId, String newPosition) {
         Employee employee = employeeDao.get(employeeId);
-        employee.setJob_position(Position.fromDbValue(newPosition));
+        employee.setJobPosition(Position.fromDbValue(newPosition));
         employeeDao.update(employee);
     }
 

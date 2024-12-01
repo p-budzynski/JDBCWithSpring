@@ -3,7 +3,6 @@ package pl.kurs.homework;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import pl.kurs.homework.dao.EmployeeDao;
 import pl.kurs.homework.entity.Employee;
 import pl.kurs.homework.entity.Position;
 import pl.kurs.homework.srvice.EmployeeService;
@@ -15,22 +14,19 @@ public class Application {
         AnnotationConfigApplicationContext ctx =
                 new AnnotationConfigApplicationContext(Application.class);
 
-        EmployeeDao employeeDaoFromSpring = ctx.getBean(EmployeeDao.class);
+        EmployeeService service = ctx.getBean(EmployeeService.class);
 
-        EmployeeService service = new EmployeeService(employeeDaoFromSpring);
+        Employee employee = new Employee("Adam", "Nieprzekładam", Position.SENIOR_DEV, 8500.0);
 
-        Employee employee = new Employee("Adam", "Przekładam", Position.JUNIOR_DEV, 3000.0);
+        service.hireEmployee(employee);
 
-//        service.hireEmployee(employee);
-//
-//        service.increaseSalaryById(208L);
-//
-//        service.promoteEmployee(208L, "lead dev");
-//
-//        service.fireEmployee(208L);
-//
-//        System.out.println(service.findEmployeeById(208L));
+        service.increaseSalaryById(210L);
 
+        service.promoteEmployee(210L, "lead dev");
+
+        service.fireEmployee(210L);
+
+        System.out.println(service.findEmployeeById(210L));
 
         ctx.close();
     }

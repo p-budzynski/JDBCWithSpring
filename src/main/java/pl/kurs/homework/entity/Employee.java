@@ -15,17 +15,20 @@ public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String first_name;
-    private String last_name;
+    @Column(name = "first_name")
+    private String firstName;
+    @Column(name = "last_name")
+    private String lastName;
     @Enumerated(EnumType.STRING)
-    private Position job_position;
+    @Column(name = "job_position")
+    private Position jobPosition;
     private Double salary;
     private Boolean fired;
 
     public Employee(String firstName, String lastName, Position position, Double salary) {
-        this.first_name = firstName;
-        this.last_name = lastName;
-        this.job_position = position;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.jobPosition = position;
         this.salary = salary;
         this.fired = false;
     }
